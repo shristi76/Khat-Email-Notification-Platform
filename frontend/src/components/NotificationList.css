@@ -1,0 +1,334 @@
+/* =================================
+   Notification List Card
+================================= */
+
+.card {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  background: #ffffff;
+
+  border: 1px solid #000000;
+  border-radius: 16px;
+
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+
+  overflow: hidden;
+}
+
+/* =================================
+   Card Header
+================================= */
+
+.card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 26px 28px;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* =================================
+   Eyebrow
+================================= */
+
+.card-title .eyebrow {
+  margin: 0 0 6px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 1.4px;
+
+  color: #2563eb;
+}
+
+/* =================================
+   Title
+================================= */
+
+.card-title h2 {
+  margin: 0;
+
+  font-size: 24px;
+  line-height: 1.3;
+
+  font-weight: 700;
+
+  color: #172033;
+}
+
+/* =================================
+   Record Count
+================================= */
+
+.history-count {
+  flex-shrink: 0;
+
+  padding: 7px 12px;
+
+  border-radius: 999px;
+
+  background: #eff6ff;
+  color: #2563eb;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* =================================
+   Table Wrapper
+================================= */
+
+.table-wrap {
+  width: 100%;
+
+  overflow-x: auto;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+/* =================================
+   Table
+================================= */
+
+.table-wrap table {
+  width: 100%;
+
+  min-width: 700px;
+
+  border-collapse: collapse;
+
+  font-size: 14px;
+}
+
+/* =================================
+   Table Header
+================================= */
+
+.table-wrap thead {
+  background: #f8fafc;
+}
+
+.table-wrap th {
+  padding: 14px 20px;
+
+  text-align: left;
+
+  white-space: nowrap;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.3px;
+
+  color: #64748b;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* =================================
+   Table Body
+================================= */
+
+.table-wrap td {
+  padding: 18px 20px;
+
+  color: #334155;
+
+  border-bottom: 1px solid #f1f5f9;
+
+  vertical-align: middle;
+}
+
+/* Remove border from last row */
+
+.table-wrap tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* =================================
+   Row Hover
+================================= */
+
+.table-wrap tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* =================================
+   Recipient
+================================= */
+
+.table-wrap td:first-child {
+  color: #172033;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+/* =================================
+   Subject
+================================= */
+
+.table-wrap td:nth-child(2) {
+  max-width: 300px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+/* =================================
+   Sent At
+================================= */
+
+.table-wrap td:last-child {
+  color: #64748b;
+
+  white-space: nowrap;
+
+  font-size: 13px;
+}
+
+/* =================================
+   Status Badge
+================================= */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+
+  padding: 5px 10px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+/* SENT */
+
+.status.sent {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* FAILED */
+
+.status.failed {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* =================================
+   Empty State
+================================= */
+
+.table-wrap tbody tr td[colspan="4"] {
+  padding: 55px 20px;
+
+  text-align: center;
+
+  color: #64748b;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+/* =================================
+   Scrollbar
+================================= */
+
+.table-wrap::-webkit-scrollbar {
+  height: 7px;
+}
+
+.table-wrap::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.table-wrap::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+
+  border-radius: 999px;
+}
+
+.table-wrap::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* =================================
+   Tablet
+================================= */
+
+@media (max-width: 800px) {
+  .card-title {
+    padding: 22px;
+  }
+
+  .card-title h2 {
+    font-size: 21px;
+  }
+
+  .table-wrap th,
+  .table-wrap td {
+    padding: 15px 16px;
+  }
+}
+
+/* =================================
+   Mobile
+================================= */
+
+@media (max-width: 500px) {
+  .card {
+    border-radius: 12px;
+  }
+
+  .card-title {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    padding: 20px;
+  }
+
+  .card-title h2 {
+    font-size: 20px;
+  }
+
+  .history-count {
+    font-size: 12px;
+  }
+
+  .table-wrap table {
+    min-width: 650px;
+  }
+
+  .table-wrap th {
+    padding: 13px 14px;
+
+    font-size: 11px;
+  }
+
+  .table-wrap td {
+    padding: 15px 14px;
+
+    font-size: 13px;
+  }
+}

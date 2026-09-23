@@ -19,29 +19,31 @@ const createNotification = async (
 };
 
 const updateStatus = async (id, status) => {
-    await db.query(
+    const result = await db.query(
         "UPDATE notifications SET status=$1 WHERE id=$2",
         [status, id]
     );
+    return { id, status, updated: result.rowCount === 1 };
 };
 
-const getUserNotifications = async (userId) => {
+const getUserNotifications = async (userId, limit, offset) => {
     const result = await db.query(
         `SELECT
             id,
             recipient,
             subject,
             message,
-            type,
             status,
             created_at
          FROM notifications
          WHERE user_id = $1
-         ORDER BY created_at DESC`,
-        [userId]
+         ORDER BY created_at DESC
+         LIMIT $2 OFFSET $3`,
+        [userId, limit, offset]
     );
 
-    return result.rows;
+    const countResult = await db.query("SELECT COUNT(*)::int AS total FROM notifications WHERE user_id = $1", [userId]);
+    return { notifications: result.rows, total: countResult.rows[0].total };
 };
 
 module.exports = {

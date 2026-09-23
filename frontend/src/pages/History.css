@@ -1,0 +1,159 @@
+/* =================================
+   History Page
+================================= */
+
+.history-page {
+  min-height: calc(100vh - 70px);
+  padding: 50px 24px 70px;
+
+  background: #f8fafc;
+
+  font-family: Arial, sans-serif;
+  color: #172033;
+}
+
+/* =================================
+   History Hero
+================================= */
+
+.history-hero {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto 32px;
+  padding: 32px;
+
+  background: #ffffff;
+
+  border: 1px solid #000000;
+  border-radius: 16px;
+
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+/* Small heading */
+
+.history-hero .eyebrow {
+  margin: 0 0 10px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+
+  color: #2563eb;
+}
+
+/* Description */
+
+.history-hero > p:last-child {
+  margin: 0;
+
+  font-size: 18px;
+  line-height: 1.6;
+
+  color: #475569;
+}
+
+/* =================================
+   Loading / Error State
+================================= */
+
+.page-state {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+/* Loading */
+
+.loading {
+  padding: 40px 20px;
+
+  font-size: 15px;
+  color: #64748b;
+}
+
+/* Error */
+
+.alert {
+  padding: 14px 16px;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.alert.error {
+  border: 1px solid #fecaca;
+
+  background: #fef2f2;
+
+  color: #b91c1c;
+}
+
+/* =================================
+   Notification List Container
+================================= */
+
+.history-page > .notification-list,
+.history-page > div {
+  width: 100%;
+  max-width: 1100px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =================================
+   Responsive - Tablet
+================================= */
+
+@media (max-width: 800px) {
+  .history-page {
+    padding: 35px 20px 50px;
+  }
+
+  .history-hero {
+    padding: 26px;
+    margin-bottom: 24px;
+  }
+
+  .history-hero > p:last-child {
+    font-size: 16px;
+  }
+}
+
+/* =================================
+   Responsive - Mobile
+================================= */
+
+@media (max-width: 500px) {
+  .history-page {
+    padding: 25px 14px 40px;
+  }
+
+  .history-hero {
+    padding: 22px 18px;
+
+    border-radius: 12px;
+  }
+
+  .history-hero .eyebrow {
+    font-size: 11px;
+    letter-spacing: 1.2px;
+  }
+
+  .history-hero > p:last-child {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .page-state {
+    font-size: 14px;
+  }
+}

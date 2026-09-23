@@ -1,101 +1,97 @@
-// function NotificationForm() {
-//   return (
-//     <div className="card">
-//       <h2>Send Notification</h2>
-
-//       <input
-//         type="email"
-//         placeholder="Recipient Email"
-//       />
-
-//       <input
-//         type="text"
-//         placeholder="Subject"
-//       />
-
-//       <textarea
-//         placeholder="Message"
-//       ></textarea>
-
-//       <button>Send</button>
-//     </div>
-//   );
-// }
-
-// export default NotificationForm;
-
-
 import { useState } from "react";
 import api from "../services/api";
+import "./Notificationform.css";
 
 function NotificationForm({ refreshNotifications }) {
-  const [recipient, setRecipient] = useState("");
+  const [recipients, setRecipients] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [feedback, setFeedback] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setFeedback("");
+    setLoading(true);
 
     try {
-      const token = localStorage.getItem("token");
+      const response = await api.post("/notifications/send", {
+        recipients,
+        subject,
+        message,
+      });
 
-      await api.post(
-        "/notifications/send",
-        {
-          recipient,
-          subject,
-          message,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      setFeedback(response.data.message);
 
-      alert("Notification sent successfully!");
-
-      setRecipient("");
+      setRecipients("");
       setSubject("");
       setMessage("");
 
       refreshNotifications();
     } catch (error) {
-      alert(error.response?.data?.message || "Failed to send notification");
+      setError(error.response?.data?.message || "Failed to send notification");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="card">
-      <h2>Send Notification</h2>
+    <section className="card composer-card">
+      <div className="card-title">
+        <div>
+          <h2>Compose delivery</h2>
+        </div>
+      </div>
+      <p className="form-hint">
+        Send to up to 50 people. Separate addresses with commas or new lines;
+        replies go to your Khat account email.
+      </p>
+      {feedback && <p className="alert success">{feedback}</p>}
+      {error && (
+        <p className="alert error" role="alert">
+          {error}
+        </p>
+      )}
 
       <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Recipient Email"
-          value={recipient}
-          onChange={(e) => setRecipient(e.target.value)}
-          required
-        />
+        <label>
+          Recipients
+          <textarea
+            placeholder="alex@company.com, maya@company.com"
+            value={recipients}
+            onChange={(e) => setRecipients(e.target.value)}
+            required
+          />
+        </label>
 
-        <input
-          type="text"
-          placeholder="Subject"
-          value={subject}
-          onChange={(e) => setSubject(e.target.value)}
-          required
-        />
+        <label>
+          Subject
+          <input
+            type="text"
+            placeholder="Subject"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            required
+          />
+        </label>
 
-        <textarea
-          placeholder="Message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          required
-        ></textarea>
+        <label>
+          Message
+          <textarea
+            placeholder="Message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+          ></textarea>
+        </label>
 
-        <button type="submit">Send Notification</button>
+        <button className="send-button" disabled={loading} type="submit">
+          <span>{loading ? "Sending to recipients…" : "Send email"}</span>
+        </button>
       </form>
-    </div>
+    </section>
   );
 }
 
